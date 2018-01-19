@@ -280,16 +280,16 @@ function are_you_sure(action, canceled){
 		var $w = new $FormWindow().addClass("dialogue-window");
 		$w.title("Paint");
 		$w.$main.text(file_name+" は変更されています。保存しますか?");
-		$w.$Button("Save", function(){
+		$w.$Button("はい", function(){
 			$w.close();
 			file_save();
 			action();
 		}).focus();
-		$w.$Button("Discard", function(){
+		$w.$Button("いいえ", function(){
 			$w.close();
 			action();
 		});
-		$w.$Button("Cancel", function(){
+		$w.$Button("ｷｬﾝｾﾙ", function(){
 			$w.close();
 			canceled && canceled();
 		});
