@@ -80,7 +80,7 @@ var $status_position = $(E("div")).addClass("status-coordinates").appendTo($stat
 var $status_size = $(E("div")).addClass("status-coordinates").appendTo($status_area);
 
 $status_text.default = function(){
-	$status_text.text("For Help, click Help Topics on the Help Menu.");
+	$status_text.text("ﾍﾙﾌﾟを見るには、[ﾍﾙﾌﾟ] ﾒﾆｭｰの [ﾄﾋﾟｯｸの検索] を選んでください。");
 };
 $status_text.default();
 

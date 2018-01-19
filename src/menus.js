@@ -1,17 +1,17 @@
-
+//from W95 Japanese version
 var menus = {
-	"&File": [
+	"ﾌｧｲﾙ(&F)": [
 		{
-			item: "&New",
+			item: "新規(&N)",
 			shortcut: "Ctrl+N",
 			action: file_new,
-			description: "Creates a new document.",
+			description: "新しいﾌｧｲﾙを作成します。",
 		},
 		{
-			item: "&Open",
+			item: "開く(&O)...",
 			shortcut: "Ctrl+O",
 			action: file_open,
-			description: "Opens an existing document.",
+			description: "既存のﾌｧｲﾙを開きます。",
 		},
 		{
 			item: "&Load From URL",
@@ -20,53 +20,53 @@ var menus = {
 			description: "Opens an image from the web.",
 		},
 		{
-			item: "&Save",
+			item: "上書き保存(&S)",
 			shortcut: "Ctrl+S",
 			action: file_save,
-			description: "Saves the active document.",
+			description: "現在のﾌｧｲﾙを保存します。",
 		},
 		{
-			item: "Save &As",
+			item: "名前を付けて保存(&A)",
 			shortcut: "Ctrl+Shift+S",
 			//shortcut: "",
 			action: file_save_as,
-			description: "Saves the active document with a new name.",
+			description: "現在のﾌｧｲﾙを新しい名前で保存します。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "Print Pre&view",
+			item: "印刷ﾌﾟﾚﾋﾞｭｰ(&V)",
 			action: function(){
 				print();
 			},
-			description: "Prints the active document and sets printing options.",
-			//description: "Displays full pages.",
+			description: "印刷ｵﾌﾟｼｮﾝを設定し、現在のﾌｧｲﾙを印刷します。",
+			//description: "ﾍﾟｰｼﾞ全体を表示します。",
 		},
 		{
-			item: "Page Se&tup",
+			item: "ﾍﾟｰｼﾞ設定(&U)",
 			action: function(){
 				print();
 			},
-			description: "Prints the active document and sets printing options.",
-			//description: "Changes the page layout.",
+			description: "印刷ｵﾌﾟｼｮﾝを設定し、現在のﾌｧｲﾙを印刷します。",
+			//description: "ﾍﾟｰｼﾞ ﾚｲｱｳﾄの設定を変更します。",
 		},
 		{
-			item: "&Print",
+			item: "印刷(&P)",
 			shortcut: "Ctrl+P",
 			action: function(){
 				print();
 			},
-			description: "Prints the active document and sets printing options.",
+			description: "印刷ｵﾌﾟｼｮﾝを設定し、現在のﾌｧｲﾙを印刷します。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "Set As &Wallpaper (Tiled)",
+			item: "壁紙に設定(並べて表示) (&W)",
 			action: set_as_wallpaper_tiled,
-			description: "Tiles this bitmap as the desktop background.",
+			description: "このﾋﾞｯﾄﾏｯﾌﾟを壁紙として使用し、並べて表示します。",
 		},
 		{
-			item: "Set As Wa&llpaper (Centered)",
+			item: "壁紙に設定(中央に表示) (&L)",
 			action: set_as_wallpaper_centered,
-			description: "Centers this bitmap as the desktop background.",
+			description: "このﾋﾞｯﾄﾏｯﾌﾟを壁紙として使用し、中央に表示します。",
 		},
 		$MenuBar.DIVIDER,
 		{
@@ -76,42 +76,42 @@ var menus = {
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "Recent File",
+			item: "最新のﾌｧｲﾙ",
 			enabled: false, // @TODO for chrome app
 			description: "",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "E&xit",
+			item: "ﾍﾟｲﾝﾄの終了(&X)",
 			shortcut: "Alt+F4",
 			action: function(){
 				close();
 			},
-			description: "Quits Paint.",
+			description: "ﾍﾟｲﾝﾄを終了します。",
 		}
 	],
-	"&Edit": [
+	"編集(&E)": [
 		{
-			item: "&Undo",
+			item: "元に戻す(&U)",
 			shortcut: "Ctrl+Z",
 			enabled: function(){
 				return undos.length >= 1;
 			},
 			action: undo,
-			description: "Undoes the last action.",
+			description: "直前に行った操作を取り消します。",
 		},
 		{
-			item: "&Repeat",
+			item: "やり直し(&R)",
 			shortcut: "F4",
 			enabled: function(){
 				return redos.length >= 1;
 			},
 			action: redo,
-			description: "Redoes the previously undone action.",
+			description: "直前に行った操作をやり直します。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "Cu&t",
+			item: "切り取り(&T)",
 			shortcut: "Ctrl+X",
 			enabled: function(){
 				// @TODO disable if no selection (image or text)
@@ -120,10 +120,10 @@ var menus = {
 			action: function(){
 				document.execCommand("cut");
 			},
-			description: "Cuts the selection and puts it on the Clipboard.",
+			description: "選択範囲を切り取ってｸﾘｯﾌﾟﾎﾞｰﾄﾞに移動します。",
 		},
 		{
-			item: "&Copy",
+			item: "ｺﾋﾟｰ(&C)",
 			shortcut: "Ctrl+C",
 			enabled: function(){
 				// @TODO disable if no selection (image or text)
@@ -132,10 +132,10 @@ var menus = {
 			action: function(){
 				document.execCommand("copy");
 			},
-			description: "Copies the selection and puts it on the Clipboard.",
+			description: "選択範囲をｸﾘｯﾌﾟﾎﾞｰﾄﾞにｺﾋﾟｰします。",
 		},
 		{
-			item: "&Paste",
+			item: "貼り付け(&P)",
 			shortcut: "Ctrl+V",
 			enabled: function(){
 				return (typeof chrome !== "undefined") && chrome.permissions;
@@ -143,37 +143,37 @@ var menus = {
 			action: function(){
 				document.execCommand("paste");
 			},
-			description: "Inserts the contents of the Clipboard.",
+			description: "ｸﾘｯﾌﾟﾎﾞｰﾄﾞの内容を挿入します。",
 		},
 		{
-			item: "C&lear Selection",
+			item: "選択範囲のｸﾘｱ(&L)",
 			shortcut: "Del",
 			enabled: function(){ return !!selection; },
 			action: delete_selection,
-			description: "Deletes the selection.",
+			description: "選択範囲を削除します。",
 		},
 		{
-			item: "Select &All",
+			item: "すべて選択(&A)",
 			shortcut: "Ctrl+A",
 			action: select_all,
-			description: "Selects everything.",
+			description: "すべての範囲を選択します。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "C&opy To...",
+			item: "ﾌｧｲﾙへｺﾋﾟｰ(&O)...",
 			enabled: function(){ return !!selection; },
 			action: save_selection_to_file,
-			description: "Copies the selection to a file.",
+			description: "選択範囲をﾌｧｲﾙにｺﾋﾟｰします。",
 		},
 		{
-			item: "Paste &From...",
+			item: "ﾌｧｲﾙから貼り付け&(F)...",
 			action: paste_from_file_select_dialog,
-			description: "Pastes a file into the selection.",
+			description: "選択範囲にﾌｧｲﾙを貼り付けます。",
 		}
 	],
-	"&View": [
+	"表示(&V)": [
 		{
-			item: "&Tool Box",
+			item: "ﾂｰﾙ ﾎﾞｯｸｽ(&T)",
 			shortcut: "Ctrl+T",
 			checkbox: {
 				toggle: function(){
@@ -183,10 +183,10 @@ var menus = {
 					return $toolbox.is(":visible");
 				},
 			},
-			description: "Shows or hides the tool box.",
+			description: "ﾂｰﾙ ﾎﾞｯｸｽの表示/非表示を切り替えます。",
 		},
 		{
-			item: "&Color Box",
+			item: "ｶﾗｰ ﾎﾞｯｸｽ(&C)",
 			shortcut: "Ctrl+L",
 			checkbox: {
 				toggle: function(){
@@ -196,10 +196,10 @@ var menus = {
 					return $colorbox.is(":visible");
 				},
 			},
-			description: "Shows or hides the color box.",
+			description: "ｶﾗｰ ﾎﾞｯｸｽの表示/非表示を切り替えます。",
 		},
 		{
-			item: "&Status Bar",
+			item: "ｽﾃｰﾀｽﾊﾞｰ(&S)",
 			checkbox: {
 				toggle: function(){
 					$status_area.toggle();
@@ -208,13 +208,13 @@ var menus = {
 					return $status_area.is(":visible");
 				},
 			},
-			description: "Shows or hides the status bar.",
+			description: "ｽﾃｰﾀｽﾊﾞｰの表示/非表示を切り替えます。",
 		},
 		{
-			item: "T&ext Toolbar",
+			item: "書式ﾊﾞｰ(&E)",
 			enabled: false, // @TODO
 			checkbox: {},
-			description: "Shows or hides the text toolbar.",
+			description: "書式ﾊﾞｰの表示/非表示を切り替えます。",
 		},
 		$MenuBar.DIVIDER,
 		{
@@ -230,16 +230,16 @@ var menus = {
 					return $extras_menu_button.is(":visible");
 				}
 			},
-			description: "Shows or hides the Extras menu.",
+			description: "拡張ﾒﾆｭｰの表示/非表示を切り替えます。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "&Zoom",
+			item: "拡大(&Z)",
 			submenu: [
 				{
-					item: "&Normal Size",
+					item: "標準に戻す(&N)",
 					shorcut: "Ctrl+PgUp",
-					description: "Zooms the picture to 100%.",
+					description: "絵を 100% に戻します。",
 					enabled: function(){
 						return magnification !== 1;
 					},
@@ -248,9 +248,9 @@ var menus = {
 					},
 				},
 				{
-					item: "&Large Size",
+					item: "拡大する(&L)",
 					shorcut: "Ctrl+PgDn",
-					description: "Zooms the picture to 400%.",
+					description: "絵を 4倍に拡大します。",
 					enabled: function(){
 						return magnification !== 4;
 					},
@@ -259,93 +259,76 @@ var menus = {
 					},
 				},
 				{
-					item: "C&ustom...",
+					item: "拡大率の指定(&U)...",
 					enabled: false, // @TODO
-					description: "Zooms the picture.",
+					description: "絵を拡大します。",
 				},
 				$MenuBar.DIVIDER,
 				{
-					item: "Show &Grid",
+					item: "ｸﾞﾘｯﾄﾞを表示(&G)",
 					shorcut: "Ctrl+G",
 					enabled: false, // @TODO
 					checkbox: {},
-					description: "Shows or hides the grid.",
+					description: "ｸﾞﾘｯﾄﾞの表示/非表示を切り替えます。",
 				},
 				{
-					item: "Show T&humbnail",
+					item: "実寸を表示(&H)",
 					enabled: false, // @TODO
 					checkbox: {},
-					description: "Shows or hides the thumbnail view of the picture.",
+					description: "実寸の表示/非表示を切り替えます。",
 				}
 			]
 		},
 		{
-			item: "&View Bitmap",
+			item: "ﾋﾞｯﾄﾏｯﾌﾟ表示(&V)",
 			shortcut: "Ctrl+F",
 			action: view_bitmap,
-			description: "Displays the entire picture.",
+			description: "絵を画面全体に表示します。",
 		}
 	],
-	"&Image": [
+	"変形(&I)": [
 		{
-			item: "&Flip/Rotate",
+			item: "反転と回転(&F)",
 			shortcut: "Ctrl+R",
 			action: image_flip_and_rotate,
-			description: "Flips or rotates the picture or a selection.",
+			description: "絵または選択範囲を反転/回転させます。",
 		},
 		{
-			item: "&Stretch/Skew",
+			item: "伸縮と傾き(&S)",
 			shortcut: "Ctrl+W",
 			action: image_stretch_and_skew,
-			description: "Stretches or skews the picture or a selection.",
+			description: "絵または選択範囲を伸縮/傾斜させます。",
 		},
 		{
-			item: "&Invert Colors",
+			item: "色の反転(&I)",
 			shortcut: "Ctrl+I",
 			action: image_invert,
-			description: "Inverts the colors of the picture or a selection.",
+			description: "絵または選択範囲の色を反転させます。",
 		},
 		{
-			item: "&Attributes...",
+			item: "ｷｬﾝﾊﾞｽの色とｻｲｽﾞ(&A)...",
 			shortcut: "Ctrl+E",
 			action: image_attributes,
-			description: "Changes the attributes of the picture.",
+			description: "ｷｬﾝﾊﾞｽの色とｻｲｽﾞを変更します。",
 		},
 		{
-			item: "&Clear Image",
+			item: "元をｸﾘｱして変形(&C)",
 			shortcut: "Ctrl+Shift+N",
 			//shortcut: "Ctrl+Shft+N", [sic]
 			action: clear,
-			description: "Clears the picture or selection.",
-		},
-		{
-			item: "&Draw Opaque",
-			checkbox: {
-				toggle: function(){
-					transparent_opaque = {
-						"opaque": "transparent",
-						"transparent": "opaque",
-					}[transparent_opaque];
-					
-					$G.trigger("option-changed");
-				},
-				check: function(){
-					return transparent_opaque === "opaque";
-				},
-			},
-			description: "Makes the current selection either opaque or transparent.",
+			description: "絵または選択範囲をｸﾘｱします。",
 		}
 	],
-	"&Colors": [
+	"ｵﾌﾟｼｮﾝ(&O)": [
 		{
-			item: "&Edit Colors...",
+			item: "色の設定(&E)...",
 			action: function(){
 				$colorbox.edit_last_color();
 			},
-			description: "Creates a new color.",
+			description: "新しい色を作成します。",
 		},
 		{
-			item: "&Get Colors",
+			item: "ﾊﾟﾚｯﾄの交換(&G)",
 			action: function(){
 				get_FileList_from_file_select_dialog(function(files){
 					var file = files[0];
@@ -359,29 +342,46 @@ var menus = {
 					});
 				});
 			},
-			description: "Uses a previously saved palette of colors.",
+			description: "以前に保存したﾊﾟﾚｯﾄを使用します。",
 		},
 		{
-			item: "&Save Colors",
+			item: "ﾊﾟﾚｯﾄの保存(&S)",
 			action: function(){
 				var blob = new Blob([JSON.stringify(palette)], {type: "application/json"});
 				saveAs(blob, "colors.json");
 			},
-			description: "Saves the current palette of colors to a file.",
+			description: "現在のﾊﾟﾚｯﾄをﾌｧｲﾙに保存します。",
+		},
+		{
+			item: "縁取り(&D)",
+			checkbox: {
+				toggle: function(){
+					transparent_opaque = {
+						"opaque": "transparent",
+						"transparent": "opaque",
+					}[transparent_opaque];
+					
+					$G.trigger("option-changed");
+				},
+				check: function(){
+					return transparent_opaque === "opaque";
+				},
+			},
+			description: "選択範囲を縁取りまたは透かしにします。",
 		}
 	],
-	"&Help": [
+	"ﾍﾙﾌﾟ(&H)": [
 		{
-			item: "&Help Topics",
+			item: "ﾄﾋﾟｯｸの検索(&H)",
 			action: show_help,
-			description: "Displays Help for the current task or command.",
+			description: "現在のﾀｽｸやｺﾏﾝﾄﾞのﾍﾙﾌﾟを表示します。",
 		},
 		$MenuBar.DIVIDER,
 		{
-			item: "&About Paint",
+			item: "ﾊﾞｰｼﾞｮﾝ情報(&A)",
 			action: function(){
 				var $msgbox = new $Window();
-				$msgbox.title("About Paint");
+				$msgbox.title("Paintのﾊﾞｰｼﾞｮﾝ情報");
 				$msgbox.$content.html(
 					"<h1><img src='images/icons/32.png'/> JS Paint<hr/></h1>" +
 					"<p>JS Paint is a web-based remake of MS Paint by <a href='http://1j01.github.io/'>Isaiah Odhner</a>.</p>" +
@@ -389,11 +389,11 @@ var menus = {
 				).css({padding: "15px"});
 				$msgbox.center();
 			},
-			description: "Displays information about this application.",
+			description: "ﾌﾟﾛｸﾞﾗﾑ情報、ﾊﾞｰｼﾞｮﾝ、著作権などを表示します。",
 			//description: "Displays program information, version number, and copyright.",
 		}
 	],
-	"E&xtras": [
+	"拡張(&X)": [
 		{
 			item: "&Render History as GIF",
 			// shortcut: "Ctrl+Shift+G",

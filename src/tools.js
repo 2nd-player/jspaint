@@ -1,7 +1,8 @@
 
 tools = [{
 	name: "Free-Form Select",
-	description: "Selects a free-form part of the picture to move, copy, or edit.",
+	tip: "自由選択",
+	description: "絵の一部を選択して、移動、ｺﾋﾟｰ、または編集します。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	// passive: @TODO,
 	
@@ -111,7 +112,8 @@ tools = [{
 	$options: $choose_transparency
 }, {
 	name: "Select",
-	description: "Selects a rectangular part of the picture to move, copy, or edit.",
+	tip: "選択",
+	description: "絵の一部を四角形で選択して、移動、ｺﾋﾟｰ、または編集します。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	passive: true,
 	drag_start_x: 0,
@@ -168,7 +170,8 @@ tools = [{
 	$options: $choose_transparency
 }, {
 	name: "Eraser/Color Eraser",
-	description: "Erases a portion of the picture, using the selected eraser shape.",
+	tip: "消しｺﾞﾑ/ｶﾗｰ消しｺﾞﾑ",
+	description: "選択された消しｺﾞﾑで、絵の一部を消します。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	// @TODO: draw square on canvas as cursor
 	continuous: "space",
@@ -217,7 +220,8 @@ tools = [{
 	$options: $choose_eraser_size
 }, {
 	name: "Fill With Color",
-	description: "Fills an area with the selected drawing color.",
+	tip: "塗りつぶし",
+	description: "現在の色で領域を塗りつぶします。",
 	cursor: ["fill-bucket", [8, 22], "crosshair"],
 	pointerdown: function(ctx, x, y){
 		
@@ -230,7 +234,8 @@ tools = [{
 	}
 }, {
 	name: "Pick Color",
-	description: "Picks up a color from the picture for drawing.",
+	tip: "色の選択",
+	description: "絵の中から、色を選択します。",
 	cursor: ["eye-dropper", [9, 22], "crosshair"],
 	deselect: true,
 	passive: true,
@@ -269,7 +274,8 @@ tools = [{
 	$options: $(E("div"))
 }, {
 	name: "Magnifier",
-	description: "Changes the magnification.",
+	tip: "拡大と縮小",
+	description: "拡大または縮小します。",
 	cursor: ["magnifier", [16, 16], "zoom-in"],
 	// @TODO: use zoom-in/zoom-out as default,
 	// even though the custom cursor image is less descriptive
@@ -286,7 +292,8 @@ tools = [{
 	$options: $choose_magnification
 }, {
 	name: "Pencil",
-	description: "Draws a free-form line one pixel wide.",
+	tip: "鉛筆",
+	description: "1ﾋﾟｸｾﾙ幅の線を引きます。",
 	cursor: ["pencil", [13, 23], "crosshair"],
 	continuous: "space",
 	stroke_only: true,
@@ -295,7 +302,8 @@ tools = [{
 	}
 }, {
 	name: "Brush",
-	description: "Draws using a brush with the selected shape and size.",
+	tip: "ﾌﾞﾗｼ",
+	description: "選択された形や幅のﾌﾞﾗｼで描きます。",
 	cursor: ["precise-dotted", [16, 16], "crosshair"],
 	continuous: "space",
 	rendered_color: "",
@@ -323,7 +331,8 @@ tools = [{
 	$options: $choose_brush
 }, {
 	name: "Airbrush",
-	description: "Draws using an airbrush of the selected size.",
+	tip: "ｴｱﾌﾞﾗｼ",
+	description: "選択されたｻｲｽﾞのｴｱﾌﾞﾗｼで描きます。",
 	cursor: ["airbrush", [7, 22], "crosshair"],
 	continuous: "time",
 	paint: function(ctx, x, y){
@@ -340,7 +349,8 @@ tools = [{
 	$options: $choose_airbrush_size
 }, {
 	name: "Text",
-	description: "Inserts text into the picture.",
+	tip: "ﾃｷｽﾄ",
+	description: "絵の中にﾃｷｽﾄを貼り付けます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	passive: true,
 	activate: function(){
@@ -392,7 +402,8 @@ tools = [{
 	$options: $choose_transparency
 }, {
 	name: "Line",
-	description: "Draws a straight line with the selected line width.",
+	tip: "直線",
+	description: "選択された太さの線で、直線を引きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	stroke_only: true,
 	shape: function(ctx, x, y, w, h){
@@ -401,7 +412,8 @@ tools = [{
 	$options: $choose_stroke_size
 }, {
 	name: "Curve",
-	description: "Draws a curved line with the selected line width.",
+	tip: "曲線",
+	description: "選択された太さの線で、曲線を引きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	stroke_only: true,
 	points: [],
@@ -467,7 +479,8 @@ tools = [{
 	$options: $choose_stroke_size
 }, {
 	name: "Rectangle",
-	description: "Draws a rectangle with the selected fill style.",
+	tip: "四角形",
+	description: "選択された塗りつぶし形式で、四角形を描きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	shape: function(ctx, x, y, w, h){
 		if(this.$options.fill){
@@ -488,7 +501,8 @@ tools = [{
 	$options: $ChooseShapeStyle()
 }, {
 	name: "Polygon",
-	description: "Draws a polygon with the selected fill style.",
+	tip: "多角形",
+	description: "選択された塗りつぶし形式で、多角形を描きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	
 	// Record the last click for double-clicking
@@ -691,7 +705,8 @@ tools = [{
 	$options: $ChooseShapeStyle()
 }, {
 	name: "Ellipse",
-	description: "Draws an ellipse with the selected fill style.",
+	tip: "楕円",
+	description: "選択された塗りつぶし形式で、楕円を描きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	shape: function(ctx, x, y, w, h){
 		draw_ellipse(ctx, x, y, w, h, this.$options.stroke, this.$options.fill);
@@ -699,7 +714,8 @@ tools = [{
 	$options: $ChooseShapeStyle()
 }, {
 	name: "Rounded Rectangle",
-	description: "Draws a rounded rectangle with the selected fill style.",
+	tip: "角丸四角形",
+	description: "選択された塗りつぶし形式で、角の丸い四角形を描きます。",
 	cursor: ["precise", [16, 16], "crosshair"],
 	shape: function(ctx, x, y, w, h){
 		if(w < 0){ x += w; w = -w; }

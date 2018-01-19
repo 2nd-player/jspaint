@@ -15,7 +15,7 @@ function $ToolBox(){
 		$b.appendTo($tools);
 		tool.$button = $b;
 		
-		$b.attr("title", tool.name);
+		$b.attr("title", tool.tip);
 		
 		var $icon = $(E("span"));
 		$icon.appendTo($b);

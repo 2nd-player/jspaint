@@ -25,7 +25,7 @@ function reset_colors(){
 
 function reset_file(){
 	file_entry = null;
-	file_name = "untitled";
+	file_name = "無題";
 	update_title();
 	saved = true;
 }
@@ -279,7 +279,7 @@ function are_you_sure(action, canceled){
 	}else{
 		var $w = new $FormWindow().addClass("dialogue-window");
 		$w.title("Paint");
-		$w.$main.text("Save changes to "+file_name+"?");
+		$w.$main.text(file_name+" は変更されています。保存しますか?");
 		$w.$Button("Save", function(){
 			$w.close();
 			file_save();
@@ -753,7 +753,7 @@ function image_attributes(){
 	if(image_attributes.$window){
 		image_attributes.$window.close();
 	}
-	var $w = image_attributes.$window = new $FormWindow("Attributes");
+	var $w = image_attributes.$window = new $FormWindow("ｷｬﾝﾊﾞｽの色とｻｲｽﾞ");
 	
 	var $main = $w.$main;
 	var $buttons = $w.$buttons;
@@ -779,8 +779,8 @@ function image_attributes(){
 	var width_in_px = canvas.width;
 	var height_in_px = canvas.height;
 	
-	var $width_label = $(E("label")).appendTo($main).text("Width:");
-	var $height_label = $(E("label")).appendTo($main).text("Height:");
+	var $width_label = $(E("label")).appendTo($main).text("幅:");
+	var $height_label = $(E("label")).appendTo($main).text("高さ:");
 	var $width = $(E("input")).appendTo($width_label);
 	var $height = $(E("input")).appendTo($height_label);
 	
@@ -797,10 +797,10 @@ function image_attributes(){
 	
 	// Fieldsets
 	
-	var $units = $(E("fieldset")).appendTo($main).append('<legend>Units</legend>');
-	$units.append('<label><input type="radio" name="units" value="in">Inches</label>');
-	$units.append('<label><input type="radio" name="units" value="cm">Cm</label>');
-	$units.append('<label><input type="radio" name="units" value="px">Pixels</label>');
+	var $units = $(E("fieldset")).appendTo($main).append('<legend>単位</legend>');
+	$units.append('<label><input type="radio" name="units" value="in">ｲﾝﾁ</label>');
+	$units.append('<label><input type="radio" name="units" value="cm">ｾﾝﾁ</label>');
+	$units.append('<label><input type="radio" name="units" value="px">ﾋﾟｸｾﾙ</label>');
 	$units.find("[value=" + current_unit + "]").attr({checked: true});
 	$units.on("change", function(){
 		var new_unit = $units.find(":checked").val();
@@ -809,9 +809,9 @@ function image_attributes(){
 		current_unit = new_unit;
 	}).triggerHandler("change");
 	
-	var $colors = $(E("fieldset")).appendTo($main).append('<legend>Colors</legend>');
-	$colors.append('<label><input type="radio" name="colors" value="monochrome">Black and White</label>');
-	$colors.append('<label><input type="radio" name="colors" value="polychrome">Color</label>');
+	var $colors = $(E("fieldset")).appendTo($main).append('<legend>色</legend>');
+	$colors.append('<label><input type="radio" name="colors" value="monochrome">ﾓﾉｸﾛ</label>');
+	$colors.append('<label><input type="radio" name="colors" value="polychrome">ｶﾗｰ</label>');
 	$colors.find("[value=" + (monochrome ? "monochrome" : "polychrome") + "]").attr({checked: true});
 	
 	var $transparency = $(E("fieldset")).appendTo($main).append('<legend>Transparency</legend>');
@@ -821,7 +821,7 @@ function image_attributes(){
 	
 	// Buttons on the right
 	
-	$w.$Button("Okay", function(){
+	$w.$Button("OK", function(){
 		var transparency_option = $transparency.find(":checked").val();
 		var colors_option = $colors.find(":checked").val();
 		var unit = $units.find(":checked").val();
@@ -851,11 +851,11 @@ function image_attributes(){
 		image_attributes.$window.close();
 	}).focus();
 	
-	$w.$Button("Cancel", function(){
+	$w.$Button("ｷｬﾝｾﾙ", function(){
 		image_attributes.$window.close();
 	});
 	
-	$w.$Button("Default", function(){
+	$w.$Button("標準", function(){
 		width_in_px = default_canvas_width;
 		height_in_px = default_canvas_height;
 		$width.val(width_in_px / unit_sizes_in_px[current_unit]);
@@ -868,20 +868,20 @@ function image_attributes(){
 }
 
 function image_flip_and_rotate(){
-	var $w = new $FormWindow("Flip and Rotate");
+	var $w = new $FormWindow("反転と回転");
 	
 	var $fieldset = $(E("fieldset")).appendTo($w.$main);
-	$fieldset.append("<legend>Flip or rotate</legend>");
-	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='flip-horizontal' checked/>Flip horizontal</label>");
-	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='flip-vertical'/>Flip vertical</label>");
-	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='rotate-by-angle'/>Rotate by angle<div></div></label>");
+	$fieldset.append("<legend>反転/回転</legend>");
+	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='flip-horizontal' checked/>水平方向</label>");
+	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='flip-vertical'/>垂直方向</label>");
+	$fieldset.append("<label><input type='radio' name='flip-or-rotate' value='rotate-by-angle'/>角度を指定<div></div></label>");
 	
 	var $rotate_by_angle = $fieldset.find("div")
 	$rotate_by_angle.css({paddingLeft: "30px"});
-	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='90' checked/>90°</label>");
-	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='180'/>180°</label>");
-	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='270'/>270°</label>");
-	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='arbitrary'/><input type='number' min='-360' max='360' name='rotate-by-arbitrary-angle' value=''/> Degrees</label>");
+	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='90' checked/>90度</label>");
+	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='180'/>180度</label>");
+	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='270'/>270度</label>");
+	$rotate_by_angle.append("<label><input type='radio' name='rotate-by-angle' value='arbitrary'/><input type='number' min='-360' max='360' name='rotate-by-arbitrary-angle' value=''/> 度</label>");
 	$rotate_by_angle.find("input").attr({disabled: true});
 	
 	$fieldset.find("input").on("change", function(){
@@ -905,7 +905,7 @@ function image_flip_and_rotate(){
 	
 	$fieldset.find("label").css({display: "block"});
 	
-	$w.$Button("Okay", function(){
+	$w.$Button("OK", function(){
 		var action = $fieldset.find("input[name='flip-or-rotate']:checked").val();
 		var angle_val = $fieldset.find("input[name='rotate-by-angle']:checked").val();
 		if(angle_val === "arbitrary"){
@@ -917,7 +917,7 @@ function image_flip_and_rotate(){
 		if(isNaN(angle)){
 			var $msgw = new $FormWindow("Invalid Value").addClass("dialogue-window");
 			$msgw.$main.text("The value specified for Degrees was invalid.");
-			$msgw.$Button("Okay", function(){
+			$msgw.$Button("OK", function(){
 				$msgw.close();
 			});
 			return;
@@ -939,7 +939,7 @@ function image_flip_and_rotate(){
 		
 		$w.close();
 	}).focus();
-	$w.$Button("Cancel", function(){
+	$w.$Button("ｷｬﾝｾﾙ", function(){
 		$w.close();
 	});
 	
@@ -947,12 +947,12 @@ function image_flip_and_rotate(){
 }
 
 function image_stretch_and_skew(){
-	var $w = new $FormWindow("Stretch and Skew");
+	var $w = new $FormWindow("伸縮と傾き");
 	
 	var $fieldset_stretch = $(E("fieldset")).appendTo($w.$main);
-	$fieldset_stretch.append("<legend>Stretch</legend><table></table>");
+	$fieldset_stretch.append("<legend>伸縮</legend><table></table>");
 	var $fieldset_skew = $(E("fieldset")).appendTo($w.$main);
-	$fieldset_skew.append("<legend>Skew</legend><table></table>");
+	$fieldset_skew.append("<legend>傾き</legend><table></table>");
 	
 	var $RowInput = function($table, img_src, label_text, default_value, label_unit){
 		var $tr = $(E("tr")).appendTo($table);
@@ -974,12 +974,12 @@ function image_stretch_and_skew(){
 		return $input;
 	};
 	
-	var stretch_x = $RowInput($fieldset_stretch.find("table"), "stretch-x", "Horizontal:", 100, "%");
-	var stretch_y = $RowInput($fieldset_stretch.find("table"), "stretch-y", "Vertical:", 100, "%");
-	var skew_x = $RowInput($fieldset_skew.find("table"), "skew-x", "Horizontal:", 0, "Degrees");
-	var skew_y = $RowInput($fieldset_skew.find("table"), "skew-y", "Vertical:", 0, "Degrees");
+	var stretch_x = $RowInput($fieldset_stretch.find("table"), "stretch-x", "水平方向:", 100, "%");
+	var stretch_y = $RowInput($fieldset_stretch.find("table"), "stretch-y", "垂直方向:", 100, "%");
+	var skew_x = $RowInput($fieldset_skew.find("table"), "skew-x", "水平方向:", 0, "度");
+	var skew_y = $RowInput($fieldset_skew.find("table"), "skew-y", "垂直方向:", 0, "度");
 	
-	$w.$Button("Okay", function(){
+	$w.$Button("OK", function(){
 		var xscale = parseFloat(stretch_x.val())/100;
 		var yscale = parseFloat(stretch_y.val())/100;
 		var hskew = parseFloat(skew_x.val())/360*TAU;
@@ -989,7 +989,7 @@ function image_stretch_and_skew(){
 		$w.close();
 	}).focus();
 	
-	$w.$Button("Cancel", function(){
+	$w.$Button("ｷｬﾝｾﾙ", function(){
 		$w.close();
 	});
 	
